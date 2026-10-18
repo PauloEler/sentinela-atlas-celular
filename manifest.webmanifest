@@ -1,6 +1,9 @@
 {
-  "name": "SENTINELA — Atlas da Vida Celular v0.8",
+  "name": "SENTINELA — Atlas da Vida Celular v0.9",
   "short_name": "SENTINELA",
+  "id": "./index.html",
+  "scope": "./",
+  "lang": "pt-BR",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#071522",

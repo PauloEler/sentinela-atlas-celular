@@ -1,0 +1,17 @@
+# Credenciais e configuração local
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+# Dados privados, cópias e artefatos locais
+private/
+privado/
+backups/
+*.bak
+*.zip
+node_modules/
+__pycache__/
+*.log
+.DS_Store
+Thumbs.db
