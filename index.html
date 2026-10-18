@@ -1,0 +1,135 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#071522"><link rel="manifest" href="manifest.webmanifest"><title>SENTINELA v0.8 — Atlas da Vida Celular</title><style>
+:root{font-family:system-ui,Segoe UI,Arial,sans-serif;background:#071522;color:#edf7ff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#16334b,#071522 65%)}header,main,footer{max-width:1300px;margin:auto;padding:16px 22px}header{border-bottom:1px solid #2e5264}h1{font-size:clamp(22px,3vw,32px);margin:6px 0}h2{font-size:20px;margin:0 0 12px}h3{margin:0 0 8px}p{line-height:1.55}.muted,small{color:#b0c7d6}.shell{display:grid;grid-template-columns:215px minmax(0,1fr);gap:15px;margin-top:12px}.side,.panel{background:#10283a;border:1px solid #31566c;border-radius:15px;padding:16px}.side{align-self:start}.side button{width:100%;text-align:left;margin:4px 0}.side button[disabled]{opacity:.45;cursor:not-allowed}button{border:1px solid #578ea4;border-radius:9px;padding:10px 13px;background:#183e55;color:#f1fbff;cursor:pointer;font:inherit}button:hover:not(:disabled),button:focus-visible{background:#21647c;outline:2px solid #8ce6ed}button.active{background:#13718b;border-color:#7ce2ef}.work{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(250px,.85fr);gap:14px}.stage{grid-column:1}.details{grid-column:2;grid-row:1}.research{grid-column:1/-1}.canvasWrap{position:relative}canvas{display:block;width:100%;height:auto;background:#061625;border:1px solid #38596d;border-radius:12px;cursor:crosshair}.tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.pill{display:inline-block;border:1px solid #4b8798;border-radius:30px;padding:5px 10px;color:#a8e5ec;font-size:12px}.legend{font-size:13px;color:#a9c9d8;margin-top:10px}.notice{border-left:3px solid #61cadb;padding-left:12px;color:#c7dce8}#description{min-height:135px}footer{font-size:12px;color:#a9c3d0}@media(max-width:950px){.shell{grid-template-columns:1fr}.side{display:flex;gap:6px;overflow-x:auto;align-items:center}.side button{min-width:150px}.work{grid-template-columns:1fr}.stage,.details,.research{grid-column:1;grid-row:auto}}@media(prefers-reduced-motion:reduce){canvas{cursor:default}}</style></head>
+<body><header><small>NEO LAB · PROJETO SENTINELA · PWA v0.8</small><h1>Atlas da Vida Celular</h1><p class="muted">Uma estrutura de cada vez. Animação no centro; explicação separada.</p></header>
+<main><div class="shell"><nav class="side" aria-label="Módulos"><h3>Módulos</h3><button class="active" aria-current="page">01 · Célula saudável</button><button id="openDNA">02 · DNA e genética</button><button id="openProtect">03 · Proteção celular</button><button id="openTransform">04 · Transformação</button><button disabled>05 · Imunidade 🔒</button><button disabled>06 · Laboratório 🔒</button><p class="muted" style="font-size:12px">Módulos 01 e 02 disponíveis. Os demais estão em desenvolvimento.</p></nav>
+<div class="work" id="cellModule"><section class="panel stage"><h2>Módulo 01 — Célula saudável</h2><p class="muted">Clique numa estrutura colorida da célula. O desenho é esquemático, não está em escala.</p>
+<div class="canvasWrap"><canvas id="cell" width="760" height="510" role="img" aria-label="Célula humana animada: membrana, núcleo, mitocôndrias e citoplasma"></canvas></div>
+<div class="tools"><button id="pause">⏸ Pausar</button><button id="zoom">🔍 Aproximar núcleo</button><button id="reset">↻ Vista geral</button></div><p class="legend">🟣 Núcleo e DNA · 🟠 Mitocôndrias · 🔵 Membrana · 🟢 Citoplasma</p><span id="motion" class="pill" aria-live="polite">Movimento ativo</span></section>
+<section class="panel details"><h2>Explicação</h2><h3 id="heading">Bem-vindo à célula</h3><div id="description" aria-live="polite"><p>Uma célula humana possui estruturas com funções diferentes. Clique no núcleo, nas mitocôndrias, na membrana ou no citoplasma para entender cada uma.</p></div><div class="notice"><strong>O que observar:</strong><p id="observe">As estruturas se movem na animação para facilitar a visualização. O movimento não representa trajetórias medidas em células reais.</p></div><p class="muted" style="font-size:13px">Atenção: uma célula saudável não é uma célula sem mutações. Sistemas de manutenção, reparo e controle ajudam a preservar suas funções.</p></section>
+<section class="panel research"><h2>Ciência × modelo visual</h2><p><strong>Conhecimento estabelecido:</strong> mitocôndrias participam da produção de ATP e sinalização; o núcleo abriga a maior parte do DNA; a membrana regula interações com o ambiente.</p><p><strong>Limite desta versão:</strong> animação educativa, sem simulação quantitativa, sem transformação cancerígena e sem previsão clínica. Os outros módulos serão implementados separadamente.</p><p class="muted">Referência de contexto: <a href="https://www.ncbi.nlm.nih.gov/books/NBK26818/" target="_blank" rel="noopener" style="color:#8be4f0">Molecular Biology of the Cell — NCBI Bookshelf</a>.</p></section></div><div class="work" id="dnaModule" style="display:none"><section class="panel stage"><h2>Módulo 02 — DNA e Genética</h2><p class="muted">Dupla hélice animada, bases complementares e resposta a lesões — modelo didático.</p><canvas id="dnaCanvas" width="760" height="510" aria-label="Animação esquemática de uma dupla hélice de DNA"></canvas><div class="tools"><button id="dnaPause">⏸ Pausar</button><button id="dnaDamage">Mostrar dano</button><button id="dnaRepair">Mostrar reparação</button><button id="dnaReset">↻ Restaurar</button></div><p class="legend">As cores e o movimento são ilustrativos; as bases são A, T, C e G.</p></section><section class="panel details"><h2>Explicação</h2><h3 id="dnaTitle">A dupla hélice</h3><p id="dnaDescription">O DNA possui duas fitas complementares que armazenam informação genética.</p><div class="notice"><strong>O que observar</strong><p id="dnaObserve">Veja as duas fitas conectadas por pares de bases.</p></div><p class="muted">Uma lesão pode ser reparada ou persistir. Nem toda lesão se transforma em mutação e nem toda mutação causa câncer.</p></section><section class="panel research"><h2>Limites científicos</h2><p>O pareamento A–T e C–G é estabelecido. O destaque vermelho representa uma lesão genérica; o verde representa uma resposta de reparação, sem simular um mecanismo molecular específico.</p><p>Este Atlas é educativo e não calcula riscos nem substitui avaliações médicas.</p></section></div></div><div class="work" id="protectModule" style="display:none">
+<section class="panel stage"><h2>Módulo 03 — Proteção Celular</h2>
+<p class="muted">Escolha um possível destino após dano ao DNA. Os caminhos não são etapas obrigatórias.</p>
+<canvas id="protectCanvas" width="760" height="510" role="img" aria-label="Animação de resposta celular a dano genético"></canvas>
+<div class="tools"><button id="protectDetect">1 · Detectar dano</button><button id="protectPause">2 · Parar ciclo</button><button id="protectRepair">3A · Reparar DNA</button><button id="protectDeath">3B · Apoptose</button><button id="protectReset">↻ Célula saudável</button><button id="protectMotion">⏸ Pausar movimento</button></div>
+<p class="legend">Vermelho: dano · Amarelo: sinalização de controle · Verde: reparo · Pontos dissipando: apoptose ilustrativa.</p></section>
+<section class="panel details"><h2>O que acontece?</h2><h3 id="protectTitle">Célula saudável</h3><p id="protectDescription">O ciclo celular é regulado por redes de proteínas. Nem toda lesão leva a câncer.</p>
+<div class="notice"><strong>Proteínas e vias envolvidas</strong><p id="protectMolecules">p53 pode participar da resposta a danos; outros mecanismos também são essenciais.</p></div>
+<p class="muted">p53 não é um agente isolado que sempre decide o destino da célula. O resultado depende da intensidade do dano, do tipo celular e do contexto.</p></section>
+<section class="panel research"><h2>Separação científica</h2><p><strong>Fatos:</strong> sensores de dano podem ativar pontos de checagem do ciclo; reparação, senescência ou apoptose são respostas possíveis.</p><p><strong>Limites:</strong> os efeitos visuais não reproduzem reações moleculares, velocidades reais ou probabilidades. O ramo de falha de controle será abordado separadamente no Módulo 04.</p></section></div><div class="work" id="transformModule" style="display:none">
+<section class="panel stage"><h2>Módulo 04 — Transformação Cancerígena</h2>
+<p class="muted">Explore caminhos alternativos: uma célula alterada pode ser controlada, eliminada ou expandir-se. Nem toda mutação causa câncer.</p>
+<canvas id="transformCanvas" width="760" height="510" role="img" aria-label="Animação de célula alterada com caminhos de controle e expansão clonal"></canvas>
+<div class="tools"><button id="trHealthy">1 · Saudável</button><button id="trMutation">2 · Alteração genética</button><button id="trControl">3A · Controle</button><button id="trEscape">3B · Escape</button><button id="trExpand">4 · Expansão clonal</button><button id="trPause">⏸ Pausar</button></div>
+<p class="legend">Verde: controle · Vermelho: alteração · Laranja: expansão. Representação didática, não cronologia obrigatória.</p></section>
+<section class="panel details"><h2>Entenda a fase</h2><h3 id="trTitle">Célula saudável</h3><p id="trText">A célula regula sua divisão e responde a sinais do ambiente.</p>
+<div class="notice"><strong>Por que isso importa?</strong><p id="trWhy">A transformação maligna geralmente envolve múltiplas alterações e seleção celular ao longo do tempo.</p></div>
+<p class="muted">Os controles ilustram possibilidades, não estimam probabilidades individuais nem reproduzem um tumor específico.</p></section>
+<section class="panel research"><h2>Investigação científica</h2><p><strong>Hipótese exploratória:</strong> alterações genéticas e fatores ambientais interagem para influenciar o destino de clones celulares.</p><p><strong>Próximo teste real:</strong> selecionar dados publicados sobre clones mutantes em tecidos normais e tumores, definir um desfecho e validar modelos computacionais em dados independentes.</p><p>Referência: <a style="color:#8be4f0" href="https://doi.org/10.1126/science.aau3879" target="_blank" rel="noopener">Martincorena et al., Science, 2018</a>.</p></section></div></main>
+<footer>v0.6 · Módulos 01 e 02 · Preserva versões anteriores. Use para educação, não para decisões médicas.</footer>
+<script>
+(()=>{'use strict';
+const canvas=document.getElementById('cell'),ctx=canvas.getContext('2d');
+const W=canvas.width,H=canvas.height;
+let paused=window.matchMedia('(prefers-reduced-motion: reduce)').matches,zoom=false,t=0,last=0;
+const items={
+ nucleus:{title:'Núcleo e DNA',desc:'O núcleo contém a maior parte do DNA da célula. Genes ajudam a orientar a produção de proteínas e a regulação de funções celulares. O núcleo não decide tudo sozinho.',observe:'Observe a região roxa central e os filamentos claros, que representam o material genético de modo simplificado.'},
+ mitochondria:{title:'Mitocôndrias',desc:'Mitocôndrias produzem grande parte do ATP usado pela célula e também participam da regulação de cálcio, sinalização e morte celular programada. Elas possuem DNA próprio.',observe:'Observe as estruturas alaranjadas e suas dobras internas, chamadas cristas.'},
+ membrane:{title:'Membrana plasmática',desc:'A membrana delimita a célula, regula a passagem de substâncias e contém proteínas que recebem e transmitem sinais.',observe:'Observe o contorno azul da célula; ele separa o interior do meio externo.'},
+ cytoplasm:{title:'Citoplasma',desc:'O citoplasma compreende o citosol e as estruturas nele presentes. Nele ocorrem inúmeras reações químicas e processos de transporte.',observe:'Observe as partículas verdes; são símbolos visuais, não moléculas identificadas.'}
+};
+function select(id){const a=items[id];document.getElementById('heading').textContent=a.title;document.getElementById('description').textContent=a.desc;document.getElementById('observe').textContent=a.observe;}
+function ellipse(x,y,rx,ry,fill,stroke,width=2){ctx.beginPath();ctx.ellipse(x,y,rx,ry,0,0,Math.PI*2);ctx.fillStyle=fill;ctx.fill();if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=width;ctx.stroke();}}
+function draw(ts){if(!last)last=ts;const dt=Math.min((ts-last)/1000,.05);last=ts;if(!paused)t+=dt;
+ctx.clearRect(0,0,W,H);const grad=ctx.createRadialGradient(380,250,10,380,250,440);grad.addColorStop(0,'#143b55');grad.addColorStop(1,'#061522');ctx.fillStyle=grad;ctx.fillRect(0,0,W,H);
+ctx.save();if(zoom){ctx.translate(-230,-130);ctx.scale(1.65,1.65);}
+const cx=380,cy=255;
+ellipse(cx,cy,296+3*Math.sin(t),206+3*Math.cos(t*.8),'rgba(35,107,132,.36)','#74d5e9',5);
+ellipse(cx,cy,284,195,'rgba(23,65,85,.32)');
+for(let i=0;i<50;i++){const a=i*2.399+t*(i%2?.13:-.13),r=.26+(i%7)*.08,x=cx+Math.cos(a)*270*r,y=cy+Math.sin(a)*180*r;ellipse(x,y,3,3,'#4ac6a5');}
+const nx=365+Math.sin(t*.8)*5,ny=247+Math.cos(t*.7)*5;
+ellipse(nx,ny,115,105,'#664394','#cfabf4',4);
+for(let i=0;i<90;i++){const a=i*.34+t*.15,r=(i/90)*93;ellipse(nx+Math.cos(a)*r,ny+Math.sin(a)*r,2.8,2.8,i%3?'#e1b1ff':'#f7d9ff');}
+const positions=[[-175,-83],[-174,101],[175,-91],[180,104],[8,-153]];
+positions.forEach(([dx,dy],i)=>{const x=cx+dx+Math.sin(t*(.7+i*.13)+i)*9,y=cy+dy+Math.cos(t*(.9+i*.1)+i)*8;
+ctx.save();ctx.translate(x,y);ctx.rotate(i*.9+Math.sin(t*.5+i)*.2);ellipse(0,0,43,20,'#e58f43','#ffd6a0',3);ctx.strokeStyle='#ffe8b4';ctx.lineWidth=3;ctx.beginPath();for(let j=-30;j<=30;j+=3){let yy=Math.sin(j*.25+t*2)*9;if(j===-30)ctx.moveTo(j,yy);else ctx.lineTo(j,yy);}ctx.stroke();ctx.restore();});
+ctx.restore();ctx.fillStyle='#d3edf9';ctx.font='17px system-ui';ctx.fillText(zoom?'ZOOM: NÚCLEO':'VISTA GERAL: CÉLULA SAUDÁVEL',18,30);requestAnimationFrame(draw);}
+canvas.addEventListener('click',e=>{const r=canvas.getBoundingClientRect();let x=(e.clientX-r.left)*W/r.width,y=(e.clientY-r.top)*H/r.height;if(zoom){x=(x+230)/1.65;y=(y+130)/1.65;}
+const nx=365+Math.sin(t*.8)*5,ny=247+Math.cos(t*.7)*5;if(Math.hypot(x-nx,y-ny)<115)return select('nucleus');
+const positions=[[-175,-83],[-174,101],[175,-91],[180,104],[8,-153]];
+if(positions.some(([dx,dy],i)=>Math.hypot(x-(380+dx+Math.sin(t*(.7+i*.13)+i)*9),y-(255+dy+Math.cos(t*(.9+i*.1)+i)*8))<45))return select('mitochondria');
+const norm=((x-380)/296)**2+((y-255)/206)**2;
+select(norm>.85&&norm<1.2?'membrane':'cytoplasm');});
+document.getElementById('pause').onclick=()=>{paused=!paused;document.getElementById('pause').textContent=paused?'▶ Retomar':'⏸ Pausar';document.getElementById('motion').textContent=paused?'Movimento pausado':'Movimento ativo';};
+document.getElementById('zoom').onclick=()=>{zoom=!zoom;document.getElementById('zoom').textContent=zoom?'🔎 Afastar':'🔍 Aproximar núcleo';select('nucleus');};
+document.getElementById('reset').onclick=()=>{zoom=false;document.getElementById('zoom').textContent='🔍 Aproximar núcleo';select('cytoplasm');};
+if(paused){document.getElementById('pause').textContent='▶ Retomar';document.getElementById('motion').textContent='Movimento pausado (preferência de acessibilidade)';}
+requestAnimationFrame(draw);
+if('serviceWorker'in navigator&&(location.hostname==='localhost'||location.hostname==='127.0.0.1'||location.protocol==='https:'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+})();
+</script><script>(()=>{const cell=document.getElementById('cellModule'),dna=document.getElementById('dnaModule'),b1=document.querySelector('.side button'),b2=document.getElementById('openDNA');b1.onclick=()=>{cell.style.display='grid';dna.style.display='none';b1.classList.add('active');b2.classList.remove('active')};b2.onclick=()=>{cell.style.display='none';dna.style.display='grid';b1.classList.remove('active');b2.classList.add('active')};const c=document.getElementById('dnaCanvas'),x=c.getContext('2d');let t=0,last=0,playing=!matchMedia('(prefers-reduced-motion: reduce)').matches,mode='normal';const info={normal:['A dupla hélice','O DNA contém informação codificada na sequência de bases. As bases se pareiam de maneira complementar: A com T, C com G.','Observe as duas fitas e as conexões entre elas.'],damage:['Lesão no DNA','A região vermelha marca uma lesão genérica. Danos podem ocorrer durante a replicação ou por agentes externos.','O vermelho é um sinal visual, não uma mutação específica.'],repair:['Resposta de reparação','Proteínas celulares podem reconhecer e corrigir lesões. O resultado depende do tipo de dano e dos mecanismos disponíveis.','O verde representa uma resposta de reparação de modo esquemático.']};function explain(){let v=info[mode];document.getElementById('dnaTitle').textContent=v[0];document.getElementById('dnaDescription').textContent=v[1];document.getElementById('dnaObserve').textContent=v[2]}function frame(ts){if(!last)last=ts;let dt=Math.min(.05,(ts-last)/1000);last=ts;if(playing)t+=dt;const W=c.width,H=c.height;x.fillStyle='#071b2a';x.fillRect(0,0,W,H);let p1=[],p2=[];for(let i=0;i<43;i++){let y=44+i*10,a=i*.36+t*.85,dx=105*Math.sin(a);p1.push([380+dx,y]);p2.push([380-dx,y])}for(let i=0;i<43;i++){const special=i>=20&&i<=25&&mode!=='normal';x.beginPath();x.moveTo(...p1[i]);x.lineTo(...p2[i]);x.strokeStyle=special?(mode==='damage'?'#ff6666':'#65efa9'):(i%2?'#72cfe9':'#dba5ef');x.lineWidth=special?7:3;x.stroke()}for(let j=0;j<2;j++){let pts=j?p2:p1;x.beginPath();pts.forEach((p,i)=>i?x.lineTo(...p):x.moveTo(...p));x.strokeStyle=j?'#d6a0f2':'#6cddf0';x.lineWidth=7;x.stroke()}x.font='bold 18px system-ui';x.fillStyle='#e6f8ff';x.fillText('DNA — MODELO VISUAL',20,26);x.font='15px system-ui';x.fillText(mode==='damage'?'Lesão destacada em vermelho':mode==='repair'?'Resposta destacada em verde':'Pareamento complementar de bases',20,492);requestAnimationFrame(frame)}document.getElementById('dnaPause').onclick=()=>{playing=!playing;document.getElementById('dnaPause').textContent=playing?'⏸ Pausar':'▶ Retomar'};document.getElementById('dnaDamage').onclick=()=>{mode='damage';explain()};document.getElementById('dnaRepair').onclick=()=>{mode='repair';explain()};document.getElementById('dnaReset').onclick=()=>{mode='normal';explain()};explain();requestAnimationFrame(frame)})();</script><script>
+(()=>{
+const ids=['cellModule','dnaModule','protectModule'],buttons=[document.querySelector('.side button'),document.getElementById('openDNA'),document.getElementById('openProtect')];
+function show(i){ids.forEach((id,j)=>document.getElementById(id).style.display=j===i?'grid':'none');buttons.forEach((b,j)=>b.classList.toggle('active',j===i));}
+buttons.forEach((b,i)=>b.addEventListener('click',()=>show(i)));
+const canvas=document.getElementById('protectCanvas'),ctx=canvas.getContext('2d');
+let state='normal',running=!window.matchMedia('(prefers-reduced-motion: reduce)').matches,time=0,previous=0;
+const info={
+normal:['Célula saudável','Os mecanismos de controle regulam a divisão e mantêm a integridade celular.','Rede de controle do ciclo, reparação e sinalização.'],
+detect:['Dano detectado','Sensores celulares identificam determinadas lesões e iniciam uma resposta. A marca vermelha representa dano genérico.','Exemplos: ATM e ATR; atuação depende do tipo de lesão.'],
+arrest:['Parada do ciclo celular','A célula pode interromper temporariamente a divisão para permitir avaliação e reparação.','p53 pode induzir p21, que ajuda a inibir complexos ciclina-CDK.'],
+repair:['Reparo bem-sucedido — caminho A','Em alguns casos, sistemas de reparação corrigem lesões e a célula pode retomar funções e divisão controlada.','Exemplos: reparo por excisão de bases, nucleotídeos e recombinação homóloga, conforme a lesão.'],
+apoptosis:['Apoptose — caminho B','Se os danos forem graves, determinadas células podem ativar morte celular programada, com participação mitocondrial.','Exemplos: p53, proteínas da família BCL-2 e caspases, dependendo da via.']};
+function change(v){state=v;let a=info[v];document.getElementById('protectTitle').textContent=a[0];document.getElementById('protectDescription').textContent=a[1];document.getElementById('protectMolecules').textContent=a[2];}
+const ellipse=(x,y,rx,ry,color,stroke)=>{ctx.beginPath();ctx.ellipse(x,y,rx,ry,0,0,Math.PI*2);ctx.fillStyle=color;ctx.fill();if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=4;ctx.stroke();}};
+function render(ms){if(!previous)previous=ms;const delta=Math.min(.05,(ms-previous)/1000);previous=ms;if(running)time+=delta;
+const w=canvas.width,h=canvas.height;ctx.fillStyle='#061827';ctx.fillRect(0,0,w,h);
+const dying=state==='apoptosis',scale=dying?.76+Math.sin(time*2)*.025:1;
+ctx.save();ctx.translate(380,250);ctx.scale(scale,scale);ctx.translate(-380,-250);
+ellipse(380,250,245,170,'rgba(28,100,132,.40)','#6ccce1');
+ellipse(380,250,95,88,'#6946a0','#d3b0f3');
+for(let i=0;i<42;i++){let a=i*.54+time*.4,r=5+(i%11)*7;ellipse(380+Math.cos(a)*r,250+Math.sin(a)*r,2.5,2.5,state==='detect'&&i%5===0?'#ff6c70':'#edc7fa');}
+for(let i=0;i<5;i++){let a=i*Math.PI*2/5+time*.25,x=380+Math.cos(a)*174,y=250+Math.sin(a)*118;ellipse(x,y,29,14,'#db9148','#ffdc9b');}
+if(state==='detect'||state==='arrest'){ctx.beginPath();ctx.moveTo(350,220);ctx.lineTo(411,277);ctx.strokeStyle='#ff6268';ctx.lineWidth=8;ctx.stroke();}
+if(state==='arrest'){ctx.beginPath();ctx.arc(380,250,115,0,Math.PI*2);ctx.strokeStyle='#f3d66e';ctx.lineWidth=9;ctx.stroke();}
+if(state==='repair'){ctx.beginPath();ctx.arc(380,250,117,-Math.PI*.7,Math.PI*.5);ctx.strokeStyle='#6de7aa';ctx.lineWidth=9;ctx.stroke();}
+if(dying){for(let i=0;i<18;i++){let a=i*Math.PI*2/18+time*.15,r=150+(i%4)*20+Math.sin(time+i)*8;ellipse(380+Math.cos(a)*r,250+Math.sin(a)*r,4+(i%3)*2,4+(i%3)*2,'#f0ad9b');}}
+ctx.restore();ctx.fillStyle='#e9f9ff';ctx.font='bold 19px system-ui';ctx.fillText('PROTEÇÃO CELULAR — MODELO DIDÁTICO',18,30);
+ctx.font='16px system-ui';ctx.fillStyle='#c1dbe8';ctx.fillText(info[state][0],20,488);requestAnimationFrame(render);}
+document.getElementById('protectDetect').onclick=()=>change('detect');
+document.getElementById('protectPause').onclick=()=>change('arrest');
+document.getElementById('protectRepair').onclick=()=>change('repair');
+document.getElementById('protectDeath').onclick=()=>change('apoptosis');
+document.getElementById('protectReset').onclick=()=>change('normal');
+document.getElementById('protectMotion').onclick=()=>{running=!running;document.getElementById('protectMotion').textContent=running?'⏸ Pausar movimento':'▶ Retomar movimento'};
+requestAnimationFrame(render);
+})();
+</script><script>
+(()=>{
+const mod=document.getElementById('transformModule'),btn=document.getElementById('openTransform');
+const others=['cellModule','dnaModule','protectModule'];
+const originalButtons=[document.querySelector('.side button'),document.getElementById('openDNA'),document.getElementById('openProtect')];
+btn.addEventListener('click',()=>{others.forEach(id=>document.getElementById(id).style.display='none');mod.style.display='grid';document.querySelectorAll('.side button').forEach(b=>b.classList.remove('active'));btn.classList.add('active')});
+originalButtons.forEach(b=>b.addEventListener('click',()=>{mod.style.display='none';btn.classList.remove('active')}));
+const c=document.getElementById('transformCanvas'),ctx=c.getContext('2d');
+let state='healthy',motion=!window.matchMedia('(prefers-reduced-motion: reduce)').matches,elapsed=0,last=0;
+const info={
+healthy:['Célula saudável','Mecanismos regulam o crescimento, a divisão e a integridade genética.','A existência de mutações ocasionais não significa doença.'],
+mutation:['Alteração genética','Uma mudança no DNA pode ocorrer durante a divisão ou após exposição a fatores externos.','Muitas mutações são neutras ou controladas. Uma alteração isolada geralmente não basta para formar um tumor.'],
+control:['Caminho A — Controle','A célula pode reparar danos, parar de dividir, entrar em senescência ou morrer.','O controle depende de vias de reparação, regulação do ciclo e sinais do tecido.'],
+escape:['Caminho B — Escape de controle','Algumas alterações podem conferir vantagem proliferativa em determinado contexto.','Isso não prova malignidade: expansão clonal também ocorre em tecidos aparentemente saudáveis.'],
+expand:['Expansão clonal','Um clone alterado pode aumentar em número quando sua proliferação supera a eliminação.','Expansão clonal não é sinônimo de câncer invasivo; etapas adicionais podem ser necessárias.']};
+function setState(v){state=v;const a=info[v];document.getElementById('trTitle').textContent=a[0];document.getElementById('trText').textContent=a[1];document.getElementById('trWhy').textContent=a[2];}
+function cell(x,y,r,abnormal,alpha=1){ctx.save();ctx.globalAlpha=alpha;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fillStyle=abnormal?'rgba(173,86,65,.55)':'rgba(39,116,141,.48)';ctx.fill();ctx.strokeStyle=abnormal?'#ff9c7c':'#7cdaed';ctx.lineWidth=3;ctx.stroke();ctx.beginPath();ctx.arc(x,y,r*.38,0,Math.PI*2);ctx.fillStyle=abnormal?'#c45d75':'#7351a7';ctx.fill();for(let i=0;i<7;i++){const a=i*6.283/7+elapsed*.5;ctx.beginPath();ctx.arc(x+Math.cos(a)*r*.65,y+Math.sin(a)*r*.65,3,0,6.283);ctx.fillStyle='#efb06c';ctx.fill();}ctx.restore();}
+function render(ts){if(!last)last=ts;const d=Math.min(.05,(ts-last)/1000);last=ts;if(motion)elapsed+=d;
+ctx.fillStyle='#071827';ctx.fillRect(0,0,760,510);
+const wave=Math.sin(elapsed*2)*5;
+if(state==='expand'){for(let i=0;i<8;i++){let a=i*6.283/8;cell(380+Math.cos(a)*125,250+Math.sin(a)*125,56,true)}cell(380,250,60,true)}
+else {cell(380,250,140+wave,state==='escape'||state==='mutation');if(state==='mutation'){ctx.strokeStyle='#ff575f';ctx.lineWidth=8;ctx.beginPath();ctx.moveTo(357,225);ctx.lineTo(406,277);ctx.stroke();}
+if(state==='control'){ctx.strokeStyle='#61e4aa';ctx.lineWidth=10;ctx.beginPath();ctx.arc(380,250,159,-2.6,2.2);ctx.stroke();}
+if(state==='escape'){ctx.strokeStyle='#ffb75f';ctx.lineWidth=9;ctx.beginPath();ctx.arc(380,250,165,-.8,1.5);ctx.stroke();}}
+ctx.fillStyle='#eaf7ff';ctx.font='bold 18px system-ui';ctx.fillText(info[state][0],20,33);ctx.font='15px system-ui';ctx.fillStyle='#a9cddd';ctx.fillText('Animação conceitual — não representa a velocidade ou a escala real',20,490);requestAnimationFrame(render);}
+[['trHealthy','healthy'],['trMutation','mutation'],['trControl','control'],['trEscape','escape'],['trExpand','expand']].forEach(([id,v])=>document.getElementById(id).onclick=()=>setState(v));
+document.getElementById('trPause').onclick=()=>{motion=!motion;document.getElementById('trPause').textContent=motion?'⏸ Pausar':'▶ Retomar'};
+requestAnimationFrame(render);
+})();
+</script></body></html>

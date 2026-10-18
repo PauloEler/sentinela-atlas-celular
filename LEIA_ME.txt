@@ -1,0 +1,5 @@
+SENTINELA v0.8 — módulos 01 a 04.
+Salve ZIP em F:\NEO_LAB. Extraia em pasta NOVA SENTINELA_PWA_v0_8.
+Servidor: python -m http.server 8778 --bind 127.0.0.1 --directory "CAMINHO_DA_PASTA"
+Abra manualmente http://127.0.0.1:8778/index.html
+Módulo 04: explore caminhos 3A (controle) e 3B (escape), depois expansão clonal. Não é simulação biomédica validada.
